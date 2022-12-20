@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use  App\Http\Controllers\PictureActionControllers;
 use App\Http\Controllers\PictureControllers;
 use App\Http\Controllers\FileController;
@@ -27,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/orderpdf/{order}', [App\Http\Controllers\OrderController::class, 'downloadPDF'])->name('downloadPDF');
     Route::get('/orderconfirm/{order}', [App\Http\Controllers\OrderController::class, 'confirm'])->name('orderconfirm');
     Route::get('/sendmail/{order}', [App\Http\Controllers\OrderController::class, 'sendmail'])->name('sendmail');
+
+    Route::resource('category', CategoryController::class);
 
     Route::middleware(['can:isAdmin'])->group(function() {
         Route::get('/admin', [App\Http\Controllers\AdminControllers::class, 'index'])->name('adminIndex');

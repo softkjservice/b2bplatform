@@ -5,6 +5,7 @@ namespace App\Classis;
 use App\Models\Order;
 use App\Models\Picture;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -12,6 +13,18 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class Utilities
 {
+    public static function checboxTrue(Request $request, string $atributte){
+
+        if ($request->input($atributte)=='on'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+
     public static function orderPicturesDelete(int $order_id){
         $order=Order::findOrFail($order_id);
         //$pictures=$order->pictures()->get();

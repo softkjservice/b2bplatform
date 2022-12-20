@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row justify-content-left">
             <div class="col-6">
-                <a  href="{{ route('orders.index') }}">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Twoje zamówienia</i></button>
+                <a  href="{{ route('category.create') }}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Dodaj kategorię</i></button>
                 </a>
-                <a  href="{{ route('orders.create') }}">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Kreator filmu</i></button>
+                <a  href="{{ route('category.index') }}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Pokaą kategorie</i></button>
                 </a>
             </div>
 

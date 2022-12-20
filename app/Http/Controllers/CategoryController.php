@@ -18,7 +18,7 @@ class CategoryController extends Controller
         //dump(public_path("/"));
         //dd(storage_path('app\public'));
 
-        return view('category.index');
+        return view('category.index',['categories' => Category::paginate(3)]);
     }
 
     /**

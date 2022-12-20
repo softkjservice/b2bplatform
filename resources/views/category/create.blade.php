@@ -15,7 +15,7 @@
                 @enderror
               <div class="form-group">
                     <label for="title">categoryIndex:</label>
-                    <input type="text" class="form-control" id="index" placeholder="Opis" name="index" >
+                    <input type="text" class="form-control" id="index" placeholder="Index" name="index" >
                 </div>
                 @error('index')
                 <div class="alert alert-danger">{{ $message }}</div>

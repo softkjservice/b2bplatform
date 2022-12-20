@@ -54,6 +54,9 @@ return [
         ]
     ],
     'category' => [
+     'name' => 'Nazwa',
+     'index' => 'Index',
+     'description'  => 'Opis',
     'add_title' => 'Dodawanie kategorii produktów',
     'edit_title' => 'Edycja kategorii produktów: :name',
     'show_title' => 'Podgląd kategorii produktów',

@@ -23,6 +23,13 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->index }}</td>
                         <td>{{ $category->categoryDescription }}</td>
+                        <td><form method="POST" class="fm-inline"
+                              action="{{ route('category.show', ['category' => $category->id]) }}">
+                            @csrf
+                            @method('GET')
+                            <input type="submit" value="show >>" class="btn btn-primary"/>
+                        </form></td>
+                    </tr>
 
                     </tr>
                 @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classis\Utilities;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -54,11 +55,15 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show($id)
+    public function show($id) :View
     {
-        //
+       // dd($id);
+        $category=Category::findOrFail($id);
+        return view("category.show", [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -81,7 +86,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('update'.$id);
     }
 
     /**
@@ -92,6 +97,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('destroy'.$id);
     }
 }

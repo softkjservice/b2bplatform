@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classis\Utilities;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -59,9 +60,25 @@ class CategoryController extends Controller
      */
     public function show($id) :View
     {
-       // dd($id);
+        //dd($id);
         $category=Category::findOrFail($id);
+        //dd(Utilities::checboxTrue($category->active));
         return view("category.show", [
+            'category' => $category
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function edit($id) :View
+    {
+        //dd('edit'.$id);
+        $category=Category::findOrFail($id);
+        return view("category.edit", [
             'category' => $category
         ]);
     }
@@ -72,21 +89,29 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editimage($id)
     {
-        //
+        dd('editi mage'.$id);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category): RedirectResponse
     {
-        dd('update'.$id);
+        $category->fill($request->input());
+        //dd($request->input());
+        //$order->confirmed=true;
+        $category->active=Utilities::checboxTrue($request, 'active');
+        $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
+        $category->save();
+        //return redirect()->route('orders.index');
+        return redirect(route('category.index'))->with('status', 'Udało się');
     }
 
     /**

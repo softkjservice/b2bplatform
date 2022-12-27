@@ -52,11 +52,19 @@
                 @enderror
                 <br>
                 <div>
-                    <input type="checkbox" id="active" name="active" checked>
+                    @if(\App\Classis\Utilities::checboxYesOrNo($category->active)=='Tak')
+                        <input type="checkbox" id="active" name="active" checked>
+                    @else
+                        <input type="checkbox" id="active" name="active" >
+                    @endif
                     <label for="active">Active</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="homePageActive" name="homePageActive" checked>
+                    @if(\App\Classis\Utilities::checboxYesOrNo($category->homePageActive)=='Tak')
+                        <input type="checkbox" id="active" name="active" checked>
+                    @else
+                        <input type="checkbox" id="active" name="active" >
+                    @endif
                     <label for="homePageActive">homePageActive</label>
                 </div>
                 <br>
@@ -65,48 +73,7 @@
         </div>
     </div>
 
-<!--    <script>
-        document.getElementById("video1").style.visibility = "hidden";
-        document.getElementById("video2").style.visibility = "hidden";
-        function myFunction() {
-            document.getElementById("demo").innerHTML = "Hello World";
-        }
-        /*function myFunction1() {
-            document.getElementById("demo").innerHTML = '<video id="video1" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_01.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction2() {
-            document.getElementById("demo").innerHTML = '<video id="video2" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_02.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction3() {
-            document.getElementById("demo").innerHTML = '<video id="video3" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_03.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction4() {
-            document.getElementById("demo").innerHTML = '<video id="video4" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_04.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction5() {
-            document.getElementById("demo").innerHTML = '<video id="video1" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_05.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction6() {
-            document.getElementById("demo").innerHTML = '<video id="video2" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_06.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction7() {
-            document.getElementById("demo").innerHTML = '<video id="video3" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_07.mp4') }}" type="video/mp4"> </video>';
-        }
-        function myFunction8() {
-            document.getElementById("demo").innerHTML = '<video id="video4" width="400" controls autoplay >  <source src="{{ asset('storage/films/penetration_08.mp4') }}" type="video/mp4"> </video>';
-        }*/
 
-
-        var removeMedia = function () {
-            _.each([$video, $audio], function ($media) {
-                if (!$media.length) return;
-                $media[0].pause();
-                $media[0].src = '';
-                $media.children('source').prop('src', '');
-                $media.remove().length = 0;
-            });
-        };
-    </script>-->
 @endsection
 
  @section('javascript')

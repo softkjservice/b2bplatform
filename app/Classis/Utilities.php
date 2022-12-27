@@ -13,6 +13,16 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class Utilities
 {
+
+    public static function checboxYesOrNo(string $atributte){
+
+        if ($atributte=='1'){
+            return 'Tak';
+        }else{
+            return 'Nie';
+        }
+    }
+
     public static function checboxTrue(Request $request, string $atributte){
 
         if ($request->input($atributte)=='on'){

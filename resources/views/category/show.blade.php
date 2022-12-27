@@ -45,12 +45,10 @@
 
             </div>
             <div class="col">
-                <form method="POST"
-                      action="{{ route('category.update', ['category' => $category->id]) }}">
+               <form >
                     @csrf
-                    @method('PUT')
-                    <input type="submit" value="Update file" class="btn btn-primary"/>
-                </form>
+                    <a href="{{ url('/categoryimage/'.$category->id)}}" class="btn btn-primary">Edit image</a>
+               </form>
                 <img src="{{ asset('storage/'.$category->image_path) }}" alt="Girl in a jacket" >
             </div>
 

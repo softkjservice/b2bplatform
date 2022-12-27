@@ -87,11 +87,16 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function editimage($id)
+    public function image($id) : View
     {
-        dd('editi mage'.$id);
+        //dd('editi mage'.$id);
+        $category=Category::findOrFail($id);
+        return view("category.editimage", [
+            'category' => $category
+        ]);
+
     }
 
 
@@ -111,6 +116,25 @@ class CategoryController extends Controller
         $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
         $category->save();
         //return redirect()->route('orders.index');
+        return redirect(route('category.index'))->with('status', 'Udało się');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Request $request
+     */
+    public function updateimage(Request $request, Category $category): RedirectResponse
+    {
+        $category->fill($request->input());
+        //dd($category->name);
+        if ($request->hasFile('image')) {
+            $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia
+            //dd($category->image_path);
+            $category->save();
+        }
+
         return redirect(route('category.index'))->with('status', 'Udało się');
     }
 

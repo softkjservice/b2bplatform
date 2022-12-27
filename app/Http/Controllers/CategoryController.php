@@ -125,7 +125,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  Request $request
      */
-    public function updateimage(Request $request, Category $category): RedirectResponse
+    public function updateimage(Request $request, Category $category): View
     {
         $category->fill($request->input());
         //dd($category->name);
@@ -134,8 +134,10 @@ class CategoryController extends Controller
             //dd($category->image_path);
             $category->save();
         }
-
-        return redirect(route('category.index'))->with('status', 'Udało się');
+        return view("category.editimage", [
+            'category' => $category
+        ]);
+        //return redirect(route('category.index'))->with('status', 'Udało się');
     }
 
     /**

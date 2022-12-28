@@ -30,26 +30,21 @@
                 @enderror
                 <div class="form-group ">
                     <label for="title">parentCategory:</label>
-                    <input type="number" min="0" step="1" class="form-control" id="categoryName" placeholder="parentCategory" name="parentCategory" value="{{$category->parentCategory}}">
+                    <input type="number" min="0" max="5" step="1" class="form-control" id="categoryName" placeholder="parentCategory" name="parentCategory" value="{{$category->parentCategory}}">
                 </div>
                 @error('parentCategory')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
                 <div class="form-group ">
                     <label for="title">layotType:</label>
-                    <input type="number" min="0" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" value="{{$category->layotType}}">
+                    <input type="number" min="0" max="10" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" value="{{$category->layotType}}">
                 </div>
                 @error('layotType')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
-                <div class="form-group">
-                    <label for="file">Zdjęcie do kategorii</label>
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                </div>
-                @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+
                 <br>
                 <div>
                     @if(\App\Classis\Utilities::checboxYesOrNo($category->active)=='Tak')
@@ -61,9 +56,9 @@
                 </div>
                 <div>
                     @if(\App\Classis\Utilities::checboxYesOrNo($category->homePageActive)=='Tak')
-                        <input type="checkbox" id="active" name="active" checked>
+                        <input type="checkbox" id="homePageActive" name="homePageActive" checked>
                     @else
-                        <input type="checkbox" id="active" name="active" >
+                        <input type="checkbox" id="homePageActive" name="homePageActive" >
                     @endif
                     <label for="homePageActive">homePageActive</label>
                 </div>

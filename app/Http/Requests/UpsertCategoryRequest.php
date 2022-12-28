@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpsertPictureRequest extends FormRequest
+class UpsertCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,13 @@ class UpsertPictureRequest extends FormRequest
     public function rules()
     {
         return [
-           // 'image' => 'nullable|image|mimes:jpg,png,gif,GIF',
-            'image' => 'required|mimes:jpg,png,gif',
+            'name' => 'required|max:50',
+            'index' => 'max:50',
+            'categoryDescription' => 'max:1000',
+            'parentCategory' => 'numeric|gt:0',
+            'layotType' => 'nullable',
+            'image' => 'mimes:jpg,png,gif',
+
         ];
     }
 }

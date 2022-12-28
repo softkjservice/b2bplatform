@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Classis\Utilities;
+use App\Http\Requests\UpsertCategoryRequest;
+use App\Http\Requests\UpsertPictureRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -107,16 +109,17 @@ class CategoryController extends Controller
      * @param  Request $request
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(UpsertCategoryRequest $request, Category $category): RedirectResponse
     {
-        $category->fill($request->input());
-        //dd($request->input());
-        //$order->confirmed=true;
+        //$category->fill($request->input());
+        $category->fill($request->validated());
+       // dump($category->layotType);
+       // dd($request->input('layotType'));
         $category->active=Utilities::checboxTrue($request, 'active');
         $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
         $category->save();
-        //return redirect()->route('orders.index');
-        return redirect(route('category.index'))->with('status', 'Udało się');
+        //return redirect(route('category.index'))->with('status', 'Udało się');
+        return redirect()->route('category.index')->with('status', 'Udało się');
     }
 
     /**
@@ -125,9 +128,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  Request $request
      */
-    public function updateimage(Request $request, Category $category): View
+    public function updateimage(UpsertPictureRequest $request, Category $category): View
     {
-        $category->fill($request->input());
+        $category->fill($request->validated());
+        //$category->fill($request->input());
         //dd($category->name);
         if ($request->hasFile('image')) {
             $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia

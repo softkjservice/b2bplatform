@@ -8,7 +8,10 @@ use App\Http\Requests\UpsertPictureRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CategoryController extends Controller
 {
@@ -22,7 +25,7 @@ class CategoryController extends Controller
         //dump(public_path("/"));
         //dd(storage_path('app\public'));
 
-        return view('category.index',['categories' => Category::paginate(3)]);
+        return view('category.index',['categories' => Category::paginate(5)]);
     }
 
     /**
@@ -95,6 +98,24 @@ class CategoryController extends Controller
     {
         //dd('editi mage'.$id);
         $category=Category::findOrFail($id);
+        Session::forget('category_image_path');
+        return view("category.editimage", [
+            'category' => $category
+        ]);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Category $category
+     * @return View
+     */
+    public function imagereturn(Category $category) : View
+    {
+        //dd($category);
+        $category->image_path=Session::get('category_image_path', '');
+        $category->save();
         return view("category.editimage", [
             'category' => $category
         ]);
@@ -130,13 +151,17 @@ class CategoryController extends Controller
      */
     public function updateimage(UpsertPictureRequest $request, Category $category): View
     {
+        //dd($category->image_path);
         $category->fill($request->validated());
+        session(['category_image_path' => $category->image_path]);
+        //dump(session('category_image_path'));
         //$category->fill($request->input());
         //dd($category->name);
         if ($request->hasFile('image')) {
             $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia
             //dd($category->image_path);
             $category->save();
+            //dd($category->image_path);
         }
         return view("category.editimage", [
             'category' => $category
@@ -148,10 +173,17 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function destroy($id)
+    public function destroy($id): View
     {
-        dd('destroy'.$id);
+        // dd($id);
+        Utilities::categoryPicturesDelete($id);
+        $category=Category::findOrFail($id);
+        //$order->pictures()->delete();
+        //Storage::deleteDirectory('xtestx');
+        $category->delete();
+        //return Redirect::back();
+        return view('category.index',['categories' => Category::paginate(5)]);
     }
 }

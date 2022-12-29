@@ -8,7 +8,7 @@
                     <button type="button" class="btn btn-primary"><i class="fas fa-plus">Dodaj kategorię</i></button>
                 </a>
                 <a  href="{{ route('category.index') }}">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Pokaą kategorie</i></button>
+                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Pokaż kategorie</i></button>
                 </a>
             </div>
 

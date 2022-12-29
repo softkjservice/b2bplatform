@@ -27,8 +27,16 @@
                               action="{{ route('category.show', ['category' => $category->id]) }}">
                             @csrf
                             @method('GET')
-                            <input type="submit" value="show >>" class="btn btn-primary"/>
+                            <input type="submit" value="Edit >>" class="btn btn-primary"/>
                         </form></td>
+                        <td>
+                            <form method="POST"
+                                  action="{{ route('category.destroy', ['category' => $category->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Delete" class="btn btn-primary"/>
+                            </form>
+                        </td>
                     </tr>
 
                     </tr>
@@ -37,6 +45,14 @@
             </table>
         </div>
         {{ $categories->links("pagination::bootstrap-4") }}
+        <div class="col-6">
+            <a  href="{{ route('category.create') }}">
+                <button type="button" class="btn btn-primary"><i class="fas fa-plus">Dodaj kategorię</i></button>
+            </a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <button type="button" class="btn btn-primary"><i class="fas fa-plus">Esc</i></button>
+            </a>
+        </div>
 
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Classis;
 
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Picture;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +33,15 @@ class Utilities
         }
     }
 
-
+    public static function categoryPicturesDelete(int $category_id){
+        $category=Category::findOrFail($category_id);
+        $file=asset('storage/'.$category->image_path);
+        if (Storage::exists($file)){
+            Storage::delete($file);
+            return true;
+        }
+        return false;
+    }
 
 
     public static function orderPicturesDelete(int $order_id){

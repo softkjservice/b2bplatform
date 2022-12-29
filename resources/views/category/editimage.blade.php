@@ -18,6 +18,7 @@
                     <br>
                     <button type="submit" class="btn btn-success" name="dodaj*">Wybierz</button>
                 </form>
+
             </div>
 
 
@@ -30,6 +31,13 @@
             <form>
                 <a href="{{ url('/category')}}" class="btn btn-primary">Zatwierdź</a>
             </form>
+            @if(\Illuminate\Support\Facades\Session::has('category_image_path') )
+                <form method="POST" action="{{ route('categoryimagereturn',$category) }}" enctype="multipart/form-data"
+                {{ method_field('PUT') }}
+                @csrf
+                    <button type="submit" class="btn btn-success" name="dodaj*">Zrezygnuj</button>
+                </form>
+            @endif
         </div>
     </div>
 

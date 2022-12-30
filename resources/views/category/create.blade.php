@@ -29,14 +29,14 @@
                 @enderror
                 <div class="form-group ">
                     <label for="title">parentCategory:</label>
-                    <input type="number" min="0" step="1" class="form-control" id="categoryName" placeholder="parentCategory" name="parentCategory" >
+                    <input type="number" min="0" max="5" step="1" class="form-control" id="categoryName" placeholder="parentCategory" name="parentCategory" value="0" >
                 </div>
                 @error('parentCategory')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group ">
                     <label for="title">layotType:</label>
-                    <input type="number" min="0" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" >
+                    <input type="number" min="0" max="10" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" value="1">
                 </div>
                 @error('layotType')
                 <div class="alert alert-danger">{{ $message }}</div>

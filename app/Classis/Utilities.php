@@ -32,27 +32,7 @@ class Utilities
             return false;
         }
     }
-//$path: ścieżka do pliku zapisana w bazie
-    public static function pictureDelete(string $path){
-        $file=asset('storage/'.$path);
 
-        if (Storage::exists($file)){
-            dd('Exist '.$file);
-            Storage::delete($file);
-            return true;
-        }
-        return false;
-    }
-
-    public static function categoryPicturesDelete(int $category_id){
-        $category=Category::findOrFail($category_id);
-        $file=asset('storage/'.$category->image_path);
-        if (Storage::exists($file)){
-            Storage::delete($file);
-            return true;
-        }
-        return false;
-    }
 
 
     public static function orderPicturesDelete(int $order_id){

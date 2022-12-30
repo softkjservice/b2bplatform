@@ -8,8 +8,10 @@ use App\Http\Requests\UpsertPictureRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -151,7 +153,7 @@ class CategoryController extends Controller
         $category->fill($request->validated());
         session(['category_image_path' => $category->image_path]);
         if ($request->hasFile('image')) {
-            Utilities::pictureDelete($category->image_path);
+            Storage::delete($category->image_path);
             $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia
             $category->save();
         }
@@ -169,11 +171,8 @@ class CategoryController extends Controller
      */
     public function destroy($id): View
     {
-        // dd($id);
-        Utilities::categoryPicturesDelete($id);
         $category=Category::findOrFail($id);
-        //$order->pictures()->delete();
-        //Storage::deleteDirectory('xtestx');
+        Storage::delete($category->image_path);
         $category->delete();
         //return Redirect::back();
         return view('category.index',['categories' => Category::paginate(5)]);

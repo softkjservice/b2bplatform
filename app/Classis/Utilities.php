@@ -35,7 +35,9 @@ class Utilities
 //$path: ścieżka do pliku zapisana w bazie
     public static function pictureDelete(string $path){
         $file=asset('storage/'.$path);
+
         if (Storage::exists($file)){
+            dd('Exist '.$file);
             Storage::delete($file);
             return true;
         }

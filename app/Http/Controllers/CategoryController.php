@@ -132,10 +132,7 @@ class CategoryController extends Controller
      */
     public function update(UpsertCategoryRequest $request, Category $category): RedirectResponse
     {
-        //$category->fill($request->input());
         $category->fill($request->validated());
-       // dump($category->layotType);
-       // dd($request->input('layotType'));
         $category->active=Utilities::checboxTrue($request, 'active');
         $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
         $category->save();
@@ -151,17 +148,12 @@ class CategoryController extends Controller
      */
     public function updateimage(UpsertPictureRequest $request, Category $category): View
     {
-        //dd($category->image_path);
         $category->fill($request->validated());
         session(['category_image_path' => $category->image_path]);
-        //dump(session('category_image_path'));
-        //$category->fill($request->input());
-        //dd($category->name);
         if ($request->hasFile('image')) {
+            Utilities::pictureDelete($category->image_path);
             $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia
-            //dd($category->image_path);
             $category->save();
-            //dd($category->image_path);
         }
         return view("category.editimage", [
             'category' => $category

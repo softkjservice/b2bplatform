@@ -34,7 +34,7 @@
                                   action="{{ route('category.destroy', ['category' => $category->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="btn btn-primary"/>
+                                <input type="submit" value="Delete" class="btn btn-primary" onclick="return confirm('{{ __('**Are you sure you want to delete?') }}')"/>
                             </form>
                         </td>
                     </tr>
@@ -44,6 +44,7 @@
                 </tbody>
             </table>
         </div>
+
         {{ $categories->links("pagination::bootstrap-4") }}
         <div class="col-6">
             <a  href="{{ route('category.create') }}">

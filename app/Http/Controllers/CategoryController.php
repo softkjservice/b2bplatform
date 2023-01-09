@@ -24,10 +24,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //dump(public_path("/"));
-        //dd(storage_path('app\public'));
+        return view('category.index',['categories' => Category::paginate(6)]);
+    }
 
-        return view('category.index',['categories' => Category::paginate(5)]);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return View
+     */
+    public function welcome() :View
+    {
+        return view('welcome',['categories' => Category::paginate(6)]);
     }
 
     /**

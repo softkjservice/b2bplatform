@@ -31,6 +31,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <div class="container">
+                    <div class="row justify-content-left">
+                        <div class="col-6">
+
+                            <a  href="{{ route('category.index') }}">
+                                <button type="button" class="btn btn-primary"><i class="fas fa-plus">Kategorie</i></button>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+
                 @can('isAdmin')
                     <a class="float-right" href="{{ route('adminIndex') }}">
                         Admin >>

@@ -27,8 +27,8 @@ class UpsertCategoryRequest extends FormRequest
             'name' => 'required|max:50',
             'index' => 'max:50',
             'categoryDescription' => 'max:1000',
-            'parentCategory' => 'numeric|gt:0',
-            'layotType' => 'numeric|gt:0',
+            'parentCategory' => 'numeric',
+            'layotType' => 'numeric|',
             'image' => 'mimes:jpg,png,gif',
 
         ];

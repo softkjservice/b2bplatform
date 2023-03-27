@@ -1,4 +1,4 @@
- @extends('layouts.app')
+  @extends('layouts.app')
  <link href="{{ asset('css/invoice.css') }}" rel="stylesheet">
 @section('content')
     <div class="page-content container">

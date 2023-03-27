@@ -53,9 +53,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpsertCategoryRequest $request)
     {
-        $category=new Category($request->input());
+        $category=new Category($request->validated());
         //dd($request->input());
         if ($request->hasFile('image')) {
             $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia

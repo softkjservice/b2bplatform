@@ -17,7 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name',100);
             $table->string('index',100);
-            $table->string('barcode',20); 
+            $table->string('barcode',20);
+            $table->decimal('quantity',9,3);
+            $table->string('unit',10);
+            $table->decimal('price',8,2);
+            $table->string('currency',5);
+            $table->tinyInteger('vatrate');
+            $table->text('description');
+            $table->integer('category_id');
+            $table->string('priority',10);
             $table->timestamps();
         });
     }

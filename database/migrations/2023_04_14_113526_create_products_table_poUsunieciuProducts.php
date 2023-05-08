@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('currency',5);
             $table->tinyInteger('vatrate');
             $table->text('description');
-            $table->integer('category_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('priority',10);
             $table->timestamps();

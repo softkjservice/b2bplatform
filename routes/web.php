@@ -5,6 +5,7 @@ use  App\Http\Controllers\PictureActionControllers;
 use App\Http\Controllers\PictureControllers;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::put('/categoryupdateimage/{category}', [CategoryController::class, 'updateimage'])->name('categoryupdateimage');
     Route::post('/categoryimagereturn/{category}', [CategoryController::class, 'imagereturn'])->name('categoryimagereturn');
 
+
     Route::middleware(['can:isAdmin'])->group(function() {
         Route::get('/admin', [App\Http\Controllers\AdminControllers::class, 'index'])->name('adminIndex');
         Route::get('/adminOrderList', [App\Http\Controllers\AdminControllers::class, 'list'])->name('adminOrderList');
@@ -52,3 +54,4 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\CategoryController::class, 'welcome'])->name('welcome');
+Route::resource('product', ProductController::class);

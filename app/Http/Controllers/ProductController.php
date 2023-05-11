@@ -13,7 +13,17 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('auth', ['except' => ['index','indexWithParameters','show']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexWithParameters($id)
+    {
+        dd($id);
     }
 
     /**
@@ -23,7 +33,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        dd('Product_index');
+        dd('index');
     }
 
     /**
@@ -55,7 +65,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**

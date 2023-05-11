@@ -16,24 +16,20 @@ class ProductController extends Controller
         $this->middleware('auth', ['except' => ['index','indexWithParameters','show']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexWithParameters($id)
-    {
-        dd($id);
-    }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        dd('index');
+       // dd('index');
+        $id = $request->id;
+        //$parameter = $request->parameter;
+        //$name = $request->name;
+        $description=$request->description;
+        dd($id." ".$description);
     }
 
     /**

@@ -34,13 +34,13 @@
 
                 <br>
                 <div class="h5">
-                    <p>{{ __('text.category.name') }}: &nbsp; {{$category->name}}</p>
-                    <p>{{ __('text.category.index') }}: &nbsp;  {{$category->index}}</p>
-                    <p>{{ __('text.category.description') }}: &nbsp;  {{$category->categoryDescription}}</p>
-                    <p>{{ __('text.category.category') }}: &nbsp;  {{$category->parentCategory}}</p>
-                    <p>{{ __('text.category.layotType') }}: &nbsp;  {{$category->layotType}}</p>
-                    <p>{{ __('text.category.active') }}: &nbsp;  {{\App\Classis\Utilities::checboxYesOrNo($category->active)}}</p>
-                    <p>{{ __('text.category.homePageActive') }}: &nbsp;  {{\App\Classis\Utilities::checboxYesOrNo($category->homePageActive)}}</p>
+                    <p>Nazwa: {{$category->name}}</p>
+                    <p>Index: {{$category->index}}</p>
+                    <p>Opis: {{$category->categoryDescription}}</p>
+                    <p>Kategoria nadrzędna: {{$category->parentCategory}}</p>
+                    <p>Typ wyświetlania: {{$category->layotType}}</p>
+                    <p>Czy aktywna: {{\App\Classis\Utilities::checboxYesOrNo($category->active)}}</p>
+                    <p>Czy pierwsza strona: {{\App\Classis\Utilities::checboxYesOrNo($category->homePageActive)}}</p>
                 </div>
 
             </div>

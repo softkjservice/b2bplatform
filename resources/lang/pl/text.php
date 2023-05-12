@@ -30,7 +30,7 @@ return [
         'subtitle'=>'Subtytuł',
         'end'=>'Zakończenie'
     ],
-    'file' => [
+    'product' => [
         'add_title' => 'Dodawanie produktu',
         'edit_title' => 'Edycja produktu: :name',
         'show_title' => 'Podgląd produktu',
@@ -50,8 +50,14 @@ return [
             'oryginal_name' => 'Nazwa',
             'image_size' => 'Rozmiar',
             'index' => 'Kolejność',
-
-        ]
+        ],
+        'name' => 'Nazwa produktu',
+        'index' => "Index wewnętrzny",
+        'description' => 'Opis towaru',
+        'category' => 'Kategoria',
+        'image' => 'Zdjęcie',
+        'active' => 'Aktywny',
+        'homePageActive' => 'Aktywny na stronie startowej'
     ],
     'category' => [
      'name' => 'Nazwa',
@@ -61,9 +67,14 @@ return [
     'edit_title' => 'Edycja kategorii produktów: :name',
     'show_title' => 'Podgląd kategorii produktów',
     'index_title' => 'Lista kategorii produktów',
-    'fields' => [
-        'name' => 'Nazwa',
+        'name' => 'Nazwa kategorii',
+        'index' => "Index",
+        'description' => 'Opis kategorii',
+        'category' => 'Kategoria nadrzędna',
+        'image' => 'Zdjęcie',
+        'active' => 'Aktywna',
+        'homePageActive' => 'Aktywna na stronie startowej',
+        'layotType' => 'Typ wyświetlania'
 
-    ]
 ],
 ];

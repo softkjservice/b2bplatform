@@ -36,6 +36,9 @@
                     <div class="row justify-content-left">
                         <div class="col-6">
 
+                            <a  href="{{ route('product.index') }}">
+                                <button type="button" class="btn btn-primary"><i class="fas fa-plus">Produkty</i></button>
+                            </a>
                             <a  href="{{ route('category.index') }}">
                                 <button type="button" class="btn btn-primary"><i class="fas fa-plus">Kategorie</i></button>
                             </a>

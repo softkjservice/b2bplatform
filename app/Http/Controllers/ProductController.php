@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,12 +25,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-       // dd('index');
-        $id = $request->id;
-        //$parameter = $request->parameter;
-        //$name = $request->name;
-        $description=$request->description;
-        dd($id." ".$description);
+        //$id = $request->id;
+        //$description=$request->description;
+        //dd($id." ".$description);
+        return view('product.index',['products' => Product::paginate(6)]);
     }
 
     /**
@@ -39,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**

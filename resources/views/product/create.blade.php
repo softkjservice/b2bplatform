@@ -4,46 +4,39 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            <form method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data" >
+            <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data" >
                 @csrf
                 <div class="form-group ">
-                    <label for="title">{{ __('text.category.name') }}</label>
-                    <input type="text" class="form-control" id="name" placeholder="categoryName" name="name" >
+                    <label for="title">{{ __('text.product.name') }}</label>
+                    <input type="text" class="form-control" id="name" placeholder="productName" name="name" >
                 </div>
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
               <div class="form-group">
-                    <label for="title">{{ __('text.category.index') }}</label>
+                    <label for="title">{{ __('text.product.index') }}</label>
                     <input type="text" class="form-control" id="index" placeholder="Index" name="index" >
                 </div>
                 @error('index')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="title">{{ __('text.category.description') }}</label>
-                    <input type="text" class="form-control" id="categoryDescription" placeholder="Opis" name="categoryDescription" >
+                    <label for="title">{{ __('text.product.description') }}</label>
+                    <input type="text" class="form-control" id="productDescription" placeholder="Description" name="categoryDescription" >
                 </div>
-                @error('categoryDescription')
+                @error('productDescription')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group ">
-                    <label for="title">{{ __('text.category.category') }}</label>
-                    <input type="number" min="0" max="5" step="1" class="form-control" id="categoryName" placeholder="parentCategory" name="parentCategory" value="0" >
+                    <label for="title">{{ __('text.product.category') }}</label>
+                    <input type="number" min="0" max="5" step="1" class="form-control" id="categoryName" placeholder="Category" name="Category" value="0" >
                 </div>
-                @error('parentCategory')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <div class="form-group ">
-                    <label for="title">{{ __('text.category.layotType') }}</label>
-                    <input type="number" min="0" max="10" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" value="1">
-                </div>
-                @error('layotType')
+                @error('categoryName')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
               <div class="form-group">
-                    <label for="file">{{ __('text.category.image') }}</label>
+                    <label for="file">{{ __('text.product.image') }}</label>
                     <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                 </div>
                 @error('image')
@@ -52,11 +45,11 @@
                 <br>
                 <div>
                     <input type="checkbox" id="active" name="active" checked>
-                    <label for="active">{{ __('text.category.active') }}</label>
+                    <label for="active">{{ __('text.product.active') }}</label>
                 </div>
                 <div>
                     <input type="checkbox" id="homePageActive" name="homePageActive" checked>
-                    <label for="homePageActive">{{ __('text.category.homePageActive') }}</label>
+                    <label for="homePageActive">{{ __('text.product.homePageActive') }}</label>
                 </div>
                <br>
                 <button type="submit" class="btn btn-success" name="dodaj*">Enter</button>

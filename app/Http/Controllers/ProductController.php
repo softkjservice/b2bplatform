@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index','indexWithParameters','show']]);
+        $this->middleware('auth', ['except' => ['index','show']]);
     }
 
 

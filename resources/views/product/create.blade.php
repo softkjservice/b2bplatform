@@ -21,6 +21,41 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
+                    <label for="title">{{ __('text.product.barcode') }}</label>
+                    <input type="text" class="form-control" id="brcode" placeholder="Barcode" name="barcode" >
+                </div>
+                @error('barcode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.unit') }}</label>
+                    <input type="text" class="form-control" id="unit" placeholder="Unit" name="unit" >
+                </div>
+                @error('unit')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.price') }}</label>
+                    <input type="text" class="form-control" id="price" placeholder="Price" name="price" >
+                </div>
+                @error('price')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.currency') }}</label>
+                    <input type="text" class="form-control" id="currency" placeholder="Currency" name="currency" >
+                </div>
+                @error('currency')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.vatrate') }}</label>
+                    <input type="text" class="form-control" id="vatrate" placeholder="Vatrate" name="vatrate" >
+                </div>
+                @error('vatrate')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
                     <label for="title">{{ __('text.product.description') }}</label>
                     <input type="text" class="form-control" id="productDescription" placeholder="Description" name="categoryDescription" >
                 </div>
@@ -32,6 +67,13 @@
                     <input type="number" min="0" max="5" step="1" class="form-control" id="categoryName" placeholder="Category" name="Category" value="0" >
                 </div>
                 @error('categoryName')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.priority') }}</label>
+                    <input type="text" class="form-control" id="priority" placeholder="Priority" name="priority" >
+                </div>
+                @error('priority')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 

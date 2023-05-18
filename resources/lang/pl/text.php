@@ -52,11 +52,17 @@ return [
             'index' => 'Kolejność',
         ],
         'name' => 'Nazwa produktu',
-        'index' => "Index wewnętrzny",
-        'description' => 'Opis towaru',
+        'index' => 'Index wewnętrzny',
+        'barcode' => 'Kod kreskowy',
+        'unit' => 'Jednostka',
+        'price' => 'Cena netto',
+        'currency' => 'Waluta',
+        'vatrate' => 'Stawka VAT',
+        'description' => 'Opis produktu',
         'category' => 'Kategoria',
         'image' => 'Zdjęcie',
         'active' => 'Aktywny',
+        'priority' => 'Priorytet wyświetlania',
         'homePageActive' => 'Aktywny na stronie startowej'
     ],
     'category' => [
@@ -68,13 +74,12 @@ return [
     'show_title' => 'Podgląd kategorii produktów',
     'index_title' => 'Lista kategorii produktów',
         'name' => 'Nazwa kategorii',
-        'index' => "Index",
+        'index' => 'Index',
         'description' => 'Opis kategorii',
         'category' => 'Kategoria nadrzędna',
         'image' => 'Zdjęcie',
         'active' => 'Aktywna',
         'homePageActive' => 'Aktywna na stronie startowej',
         'layotType' => 'Typ wyświetlania'
-
 ],
 ];

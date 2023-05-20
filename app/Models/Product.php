@@ -19,7 +19,8 @@ class Product extends Model
         'currency',
         'description',
         'category_id',
-        'priority'
+        'priority',
+        'vat_rate'
     ];
     public function category(): BelongsTo
     {

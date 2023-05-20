@@ -24,7 +24,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="title">{{ __('text.product.barcode') }}</label>
-                            <input type="text" class="form-control" id="brcode" placeholder="Barcode" name="barcode" >
+                            <input type="text" class="form-control" id="barcode" placeholder="Barcode" name="barcode" >
                         </div>
                         @error('barcode')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -32,16 +32,16 @@
 
                         <div class="form-group">
                             <label for="title">{{ __('text.product.price') }}</label>
-                            <input type="text" class="form-control" id="price" placeholder="Price" name="price" >
+                            <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="Price" name="price" >
                         </div>
                         @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="title">{{ __('text.product.description') }}</label>
-                            <input type="text" class="form-control" id="productDescription" placeholder="Description" name="categoryDescription" >
+                            <input type="text" class="form-control" id="description" placeholder="Description" name="description" >
                         </div>
-                        @error('productDescription')
+                        @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                        {{-- <div class="form-group">
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label for="title">{{ __('text.product.unit') }} </label><br>
                             <!--                            <input type="text" class="form-control" id="unit" placeholder="Unit" name="unit" >-->
-                            <select id="unid">
+                            <select id="unit" name="unit">
                                 <option value="szt">szt.</option>
                                 <option value="kg">kg.</option>
                                 <option value="m">m.</option>
@@ -68,7 +68,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="title">{{ __('text.product.currency') }} </label><br>
-                            <select id="currency">
+                            <select id="currency" name="currency">
                                 <option value="PLN">PLN</option>
                                 <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
@@ -79,28 +79,28 @@
                         @enderror
                         <div class="form-group">
                             <label for="title">{{ __('text.product.vatrate') }} </label><br>
-                            <select id="unid">
+                            <select id="vat_rate" name="vat_rate">
                                 <option value="23">23 %</option>
                                 <option value="8">8 %</option>
                                 <option value="0">0 %</option>
                                 <option value="zw">zw.</option>
                             </select>
                         </div>
-                        @error('vatrate')
+                        @error('vat_rate')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group ">
                             <label for="title">{{ __('text.product.category') }}</label><br>
-                            <select id="unid">
+                            <select id="category_id" name="category_id">
                                 <option value="40">Plotery Graphtec Tablicowe</option>
                                 <option value="42">Plotery Graptec seria FC900</option>
                                 <option value="43">Plotery Graptec seria CE7000</option>
                                 <option value="44">Automat do wycinania</option>
                                 <option value="45">Akcesoria do ploterów</option>
-                                <option value="46">otery iECHO</option>
+                                <option value="46">Plotery iECHO</option>
                             </select>
                         </div>
-                        @error('categoryName')
+                        @error('category_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <br>
@@ -109,7 +109,7 @@
                             <label for="active">{{ __('text.product.active') }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="homePageActive" name="homePageActive" checked>
+                            <input type="checkbox" id="homePageActive" name="homePageActive" >
                             <label for="homePageActive">{{ __('text.product.homePageActive') }}</label>
                         </div>
 

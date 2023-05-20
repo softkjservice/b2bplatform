@@ -23,12 +23,16 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->index }}</td>
                         <td>{{ $product->description }}</td>
-                        <td><form method="POST" class="fm-inline"
-                              action="{{ route('$product.show', ['$product' => $product->id]) }}">
-                            @csrf
-                            @method('GET')
-                            <input type="submit" value="Edit >>" class="btn btn-primary"/>
-                        </form></td>
+
+                        <td>
+                            <form method="POST"
+                                  action="{{ route('product.show', ['product' => $product->id]) }}">
+                                @csrf
+                                @method('GET')
+                                <input type="submit" value="Edit" class="btn btn-primary" />
+                            </form>
+                        </td>
+
                         <td>
                             <form method="POST"
                                   action="{{ route('product.destroy', ['product' => $product->id]) }}">

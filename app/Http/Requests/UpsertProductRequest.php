@@ -24,12 +24,15 @@ class UpsertProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
-            'sub_title' => 'max:50',
-            'title_type' => 'required|max:10',
-            'end_txt_type' => 'required|max:10',
-            'penetration_type' => 'required|max:10',
-            'end_txt' => 'required|max:50',
+            'name' => 'required|max:100',
+            'index' => 'max:100',
+            'barcode' => 'max:20',
+            'unit' => 'max:20',
+            'price' => 'numeric|',
+            'currency' => 'max:5',
+            'vat_rate' => 'max:10',
+            'description' => 'max:1000',
+            'priority' => 'max:10'
         ];
     }
 }

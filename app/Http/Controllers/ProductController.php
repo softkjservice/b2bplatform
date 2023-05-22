@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Classis\Utilities;
 use App\Http\Requests\UpsertProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class ProductController extends Controller
 {
@@ -40,11 +43,17 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return :View
      */
-    public function create()
+    public function create() :View
     {
-        return view('product.create');
+        $units=['szt','kg','m','m2','l'];
+        $currency=['PLN','EUR','USD','JPY'];
+        $vat_rate=[23,8,0,-1];
+        $categories=Category::all();
+        return view('product.create', [
+            'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories
+        ]);
     }
 
     /**
@@ -55,8 +64,9 @@ class ProductController extends Controller
      */
     public function store(UpsertProductRequest $request)
     {
+        //dd($request->input());
         $product=new Product($request->validated());
-
+//dd($product->category_id);
         if ($request->hasFile('image')) {
             $product->image_path = $request->file('image')->store('product');
         }
@@ -75,18 +85,25 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        //dd($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return  :View
      */
-    public function edit($id)
+    public function edit($id) :View
     {
-        dd($id);
+        $product=Product::findOrFail($id);
+        $units=['szt','kg','m','m2','l'];
+        $currency=['PLN','EUR','USD','JPY'];
+        $vat_rate=[23,8,0,-1];
+        $categories=Category::all();
+        return view("product.edit", [
+            'product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories
+        ]);
     }
 
     /**
@@ -98,7 +115,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('Update '.$id);
     }
 
     /**

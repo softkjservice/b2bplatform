@@ -26,7 +26,7 @@
 
                         <td>
                             <form method="POST"
-                                  action="{{ route('product.show', ['product' => $product->id]) }}">
+                                  action="{{ route('product.edit', ['product' => $product->id]) }}">
                                 @csrf
                                 @method('GET')
                                 <input type="submit" value="Edit" class="btn btn-primary" />

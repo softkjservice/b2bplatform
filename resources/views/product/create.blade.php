@@ -56,11 +56,11 @@
                         <div class="form-group">
                             <label for="title">{{ __('text.product.unit') }} </label><br>
                             <!--                            <input type="text" class="form-control" id="unit" placeholder="Unit" name="unit" >-->
-                            <select id="unit" name="unit">
-                                <option value="szt">szt.</option>
-                                <option value="kg">kg.</option>
-                                <option value="m">m.</option>
-                                <option value="m2">m2</option>
+
+                            <select id="unit" name="unit" >
+                                @foreach($units as $unit)
+                                    <option value="{{$unit}}" >{{$unit}}</option>
+                                @endforeach
                             </select>
                         </div>
                         @error('unit')
@@ -69,9 +69,9 @@
                         <div class="form-group">
                             <label for="title">{{ __('text.product.currency') }} </label><br>
                             <select id="currency" name="currency">
-                                <option value="PLN">PLN</option>
-                                <option value="EUR">EUR</option>
-                                <option value="USD">USD</option>
+                                @foreach($currency as $cur)
+                                    <option value="{{$cur}}" >{{$cur}}</option>
+                                @endforeach
                             </select>
                         </div>
                         @error('currency')
@@ -80,10 +80,9 @@
                         <div class="form-group">
                             <label for="title">{{ __('text.product.vatrate') }} </label><br>
                             <select id="vat_rate" name="vat_rate">
-                                <option value="23">23 %</option>
-                                <option value="8">8 %</option>
-                                <option value="0">0 %</option>
-                                <option value="zw">zw.</option>
+                                @foreach($vat_rate as $vat)
+                                    <option value="{{$vat}}" >{{$vat}}</option>
+                                @endforeach
                             </select>
                         </div>
                         @error('vat_rate')
@@ -92,12 +91,9 @@
                         <div class="form-group ">
                             <label for="title">{{ __('text.product.category') }}</label><br>
                             <select id="category_id" name="category_id">
-                                <option value="40">Plotery Graphtec Tablicowe</option>
-                                <option value="42">Plotery Graptec seria FC900</option>
-                                <option value="43">Plotery Graptec seria CE7000</option>
-                                <option value="44">Automat do wycinania</option>
-                                <option value="45">Akcesoria do ploterów</option>
-                                <option value="46">Plotery iECHO</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}" >{{$category->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         @error('category_id')

@@ -32,7 +32,8 @@ class UpsertProductRequest extends FormRequest
             'currency' => 'max:5',
             'vat_rate' => 'max:10',
             'description' => 'max:1000',
-            'priority' => 'max:10'
+            'priority' => 'max:10',
+            'category_id' => 'numeric|',
         ];
     }
 }

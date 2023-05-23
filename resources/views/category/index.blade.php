@@ -24,7 +24,7 @@
                         <td>{{ $category->index }}</td>
                         <td>{{ $category->categoryDescription }}</td>
                         <td><form method="POST" class="fm-inline"
-                              action="{{ route('category.show', ['category' => $category->id]) }}">
+                              action="{{ route('category.edit', ['category' => $category->id]) }}">
                             @csrf
                             @method('GET')
                             <input type="submit" value="Edit >>" class="btn btn-primary"/>

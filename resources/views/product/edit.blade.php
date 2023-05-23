@@ -152,8 +152,14 @@
 
 
                 <br>
-                <button type="submit" class="btn btn-success" name="dodaj*">Enter</button>
+                <button type="submit" class="btn btn-primary" name="dodaj*">Enter</button> &nbsp;&nbsp;
+                <a  href="{{ route('product.index') }}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Esc</i></button>
+                </a>
     </form>
+        </div>
+        <div><br><br>Zdjęcie produktu<br>
+            <img src="{{ asset('storage/'.$product->image_path) }}" alt="Brak zdjęcia">
         </div>
     </div>
 

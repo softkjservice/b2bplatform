@@ -103,7 +103,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return View
      */
-    public function image($id) : View
+    public function image1($id) : View
     {
         //dd('editi mage'.$id);
         $category=Category::findOrFail($id);
@@ -120,7 +120,7 @@ class CategoryController extends Controller
      * @param  Category $category
      * @return View
      */
-    public function imagereturn(Category $category) : View
+    public function imagereturn1(Category $category) : View
     {
         //dd($category);
         $category->image_path=Session::get('category_image_path', '');
@@ -137,25 +137,34 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Request $request
-     * @return RedirectResponse
      */
-    public function update(UpsertCategoryRequest $request, Category $category): RedirectResponse
-    {
-        $category->fill($request->validated());
-        $category->active=Utilities::checboxTrue($request, 'active');
-        $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
-        $category->save();
-        //return redirect(route('category.index'))->with('status', 'Udało się');
-        return redirect()->route('category.index')->with('status', 'Udało się');
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Request $request
+     * @param  int  $id
+     * @return  RedirectResponse
      */
-    public function updateimage(UpsertPictureRequest $request, Category $category): View
+    public function update(UpsertCategoryRequest $request, Category $category): RedirectResponse
+    {
+        $imagePathOld=$category->image_path;
+        $category->fill($request->validated());
+        $category->active=Utilities::checboxTrue($request, 'active');
+        $category->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
+        if ($request->hasFile('image')) {
+            $category->image_path = $request->file('image')->store('category');
+            Storage::delete($imagePathOld);
+        }else{
+            $category->image_path=$imagePathOld;
+        }
+        $category->save();
+        return redirect(route('category.index'));
+    }
+
+
+
+    public function updateimage1(UpsertPictureRequest $request, Category $category): View
     {
         $category->fill($request->validated());
         session(['category_image_path' => $category->image_path]);

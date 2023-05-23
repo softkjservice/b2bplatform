@@ -63,8 +63,24 @@
                     <label for="homePageActive">homePageActive</label>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" name="dodaj*">Enter</button>
+                <div class="form-group">
+                    <label for="file">{{ __('text.product.image') }}</label>
+                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                </div>
+                @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+
+                <br>
+                <button type="submit" class="btn btn-primary" name="dodaj*">Enter</button> &nbsp;&nbsp;
+                <a  href="{{ route('category.index') }}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-plus">Esc</i></button>
+                </a>
     </form>
+        </div>
+        <div><br><br>Zdjęcie kategorii<br>
+            <img src="{{ asset('storage/'.$category->image_path) }}" alt="Brak zdjęcia">
         </div>
     </div>
 

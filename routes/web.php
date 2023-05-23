@@ -31,9 +31,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/sendmail/{order}', [App\Http\Controllers\OrderController::class, 'sendmail'])->name('sendmail');
 
     Route::resource('category', CategoryController::class);
-    Route::get('/categoryimage/{image}', [CategoryController::class, 'image'])->name('categoryimage');
-    Route::put('/categoryupdateimage/{category}', [CategoryController::class, 'updateimage'])->name('categoryupdateimage');
-    Route::post('/categoryimagereturn/{category}', [CategoryController::class, 'imagereturn'])->name('categoryimagereturn');
 
 
     Route::middleware(['can:isAdmin'])->group(function() {

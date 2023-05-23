@@ -33,10 +33,6 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        //$id = $request->id;
-        //$description=$request->description;
-        //dd($id." ".$description);
-        //dd('Index');
         return view('product.index',['products' => Product::paginate(6)]);
     }
 
@@ -60,19 +56,16 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(UpsertProductRequest $request)
+    public function store(UpsertProductRequest $request): RedirectResponse
     {
-        //dd($request->input());
         $product=new Product($request->validated());
-//dd($product->category_id);
         if ($request->hasFile('image')) {
             $product->image_path = $request->file('image')->store('product');
         }
         $product->active=Utilities::checboxTrue($request, 'active');
         $product->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
-        //$product->vat_rate=$request->input('vat_rate');
         $product->save();
         return redirect(route('product.index'));
     }
@@ -111,28 +104,37 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return  RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpsertProductRequest $request, Product $product): RedirectResponse
     {
-        dd('Update '.$id);
+        $imagePathOld=$product->image_path;
+        $product->fill($request->validated());
+        $product->active=Utilities::checboxTrue($request, 'active');
+        $product->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
+       if ($request->hasFile('image')) {
+            $product->image_path = $request->file('image')->store('product');
+            Storage::delete($imagePathOld);
+        }else{
+            $product->image_path=$imagePathOld;
+        }
+        $product->save();
+        return redirect(route('product.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return  RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $product=Product::findOrFail($id);
         if (!empty($product->image_path)){
             Storage::delete($product->image_path);
         }
         $product->delete();
-        //return Redirect::back();
-        //return view('product.index',['products' => Product::paginate(5)]);
         return redirect(route('product.index'));
     }
 }

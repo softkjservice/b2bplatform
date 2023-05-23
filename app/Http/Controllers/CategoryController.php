@@ -20,9 +20,9 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() :View
     {
         return view('category.index',['categories' => Category::paginate(6)]);
     }
@@ -34,15 +34,16 @@ class CategoryController extends Controller
      */
     public function welcome() :View
     {
+        Session::forget('currentCategoryId');
         return view('welcome',['categories' => Category::paginate(6)]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create() :View
     {
         return view('category.create');
     }
@@ -51,9 +52,9 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(UpsertCategoryRequest $request)
+    public function store(UpsertCategoryRequest $request) :RedirectResponse
     {
         $category=new Category($request->validated());
         //dd($request->input());
@@ -97,39 +98,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return View
-     */
-    public function image1($id) : View
-    {
-        //dd('editi mage'.$id);
-        $category=Category::findOrFail($id);
-        Session::forget('category_image_path');
-        return view("category.editimage", [
-            'category' => $category
-        ]);
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Category $category
-     * @return View
-     */
-    public function imagereturn1(Category $category) : View
-    {
-        //dd($category);
-        $category->image_path=Session::get('category_image_path', '');
-        $category->save();
-        return view("category.editimage", [
-            'category' => $category
-        ]);
-
-    }
 
 
     /**
@@ -164,20 +133,7 @@ class CategoryController extends Controller
 
 
 
-    public function updateimage1(UpsertPictureRequest $request, Category $category): View
-    {
-        $category->fill($request->validated());
-        session(['category_image_path' => $category->image_path]);
-        if ($request->hasFile('image')) {
-            Storage::delete($category->image_path);
-            $category->image_path = $request->file('image')->store('category');  //dla każdego zamówienia tworzy nowy katalog o nazwie takiej jak numer zamówienia
-            $category->save();
-        }
-        return view("category.editimage", [
-            'category' => $category
-        ]);
-        //return redirect(route('category.index'))->with('status', 'Udało się');
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -191,6 +147,6 @@ class CategoryController extends Controller
         Storage::delete($category->image_path);
         $category->delete();
         //return Redirect::back();
-        return view('category.index',['categories' => Category::paginate(5)]);
+        return view('category.index',['categories' => Category::paginate(6)]);
     }
 }

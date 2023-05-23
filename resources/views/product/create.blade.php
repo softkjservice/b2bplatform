@@ -92,9 +92,16 @@
                             <label for="title">{{ __('text.product.category') }}</label><br>
                             <select id="category_id" name="category_id">
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}" >{{$category->name}}</option>
+                                    @if($category->id == Session::get('currentCategoryId'))
+                                        <option value="{{$category->id}}" selected >{{$category->name}}</option>
+                                    @else
+                                        <option value="{{$category->id}}" >{{$category->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
+
+
+
                         </div>
                         @error('category_id')
                         <div class="alert alert-danger">{{ $message }}</div>

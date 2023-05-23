@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -33,7 +34,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        Session::forget('currentCategoryId');
+        $id=$request->id;
+        //dd($id);
         return view('product.index',['products' => Product::paginate(6)]);
+        //return view('product.index',['products' => Product::where('category_id' , $id)->paginate(6)]);
     }
 
     /**
@@ -74,11 +79,13 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show($id)
+    public function show($id) :View
+
     {
-        //dd($id);
+        session(['currentCategoryId' => $id]);
+        return view('product.index',['products' => Product::where('category_id' , $id)->paginate(6)]);
     }
 
     /**

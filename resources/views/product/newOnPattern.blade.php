@@ -5,11 +5,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <br><h4>
-                    Edycja produktu "{{$product->name}}"
+                Nowy produkt na wzów "{{$product->name}}"
             </h4><br>
 
-            <form method="POST" action="{{ route('product.update', $product) }}" enctype="multipart/form-data" >
-                {{ method_field('PUT') }}
+            <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data" >
                 @csrf
                 @include('product._form')
            </form>

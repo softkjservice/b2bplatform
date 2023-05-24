@@ -52,5 +52,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\CategoryController::class, 'welcome'])->name('welcome');
 Route::resource('product', ProductController::class);
+Route::get('product/newOnPattern/{product}', [ProductController::class, 'newOnPattern'])->name('product.newOnPattern');
 //Route::get('/product/indexWithParameters/{category}', [App\Http\Controllers\ProductController::class, 'indexWithParameters'])->name('product.indexWithParameters');
 

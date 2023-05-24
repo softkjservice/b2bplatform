@@ -102,7 +102,25 @@ class ProductController extends Controller
         $vat_rate=[23,8,0,-1];
         $categories=Category::all();
         return view("product.edit", [
-            'product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories
+            'product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories, 'pattern' => false, 'productRoute' => 'product.update'
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return  :View
+     */
+    public function newOnPattern($id) :View
+    {
+        $product=Product::findOrFail($id);
+        $units=['szt','kg','m','m2','l'];
+        $currency=['PLN','EUR','USD','JPY'];
+        $vat_rate=[23,8,0,-1];
+        $categories=Category::all();
+        return view("product.newOnPattern", [
+            'product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories, 'pattern' => true, 'productRoute' => 'product.store'
         ]);
     }
 

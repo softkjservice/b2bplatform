@@ -52,7 +52,7 @@ return [
             'index' => 'Kolejność',
         ],
         'name' => 'Nazwa produktu',
-        'index' => 'Index wewnętrzny',
+        'index' => 'Index',
         'barcode' => 'Kod kreskowy',
         'unit' => 'Jednostka',
         'price' => 'Cena netto',

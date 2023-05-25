@@ -30,15 +30,24 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index(Request $request)
+    public function index(Request $request) :View
     {
-        Session::forget('currentCategoryId');
-        $id=$request->id;
-        //dd($id);
-        return view('product.index',['products' => Product::paginate(6)]);
-        //return view('product.index',['products' => Product::where('category_id' , $id)->paginate(6)]);
+        if(!empty($request->currentCategoryId)){
+            session(['currentCategoryId' => $request->currentCategoryId]);   //Wybór kategorii z welcome
+        }
+        if($request->currentCategoryForget){
+            Session::forget('currentCategoryId');
+        }
+        $currentCategoryId=Session::get('currentCategoryId');
+        //dd($currentCategoryId);
+        if (empty($currentCategoryId)){
+            return view('product.index',['products' => Product::paginate(10),'currentCategory'=>'Wszystkie kategorie']);
+       }else{
+            $currentCategoryName='Wybrano kategorię: '.Category::findOrFail($currentCategoryId)->name;
+            return view('product.index',['products' => Product::where('category_id' , $currentCategoryId)->paginate(10),'currentCategory'=>$currentCategoryName]);
+        }
     }
 
     /**
@@ -81,11 +90,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return View
      */
-    public function show($id) :View
-
+    public function show($id)
     {
-        session(['currentCategoryId' => $id]);
-        return view('product.index',['products' => Product::where('category_id' , $id)->paginate(6)]);
+      //  session(['currentCategoryId' => $id]);
+      //  return view('product.index',['products' => Product::where('category_id' , $id)->paginate(10)]);
     }
 
     /**
@@ -119,8 +127,7 @@ class ProductController extends Controller
         $currency=['PLN','EUR','USD','JPY'];
         $vat_rate=[23,8,0,-1];
         $categories=Category::all();
-        return view("product.newOnPattern", [
-            'product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories, 'pattern' => true, 'productRoute' => 'product.store'
+        return view("product.newOnPattern", ['product' => $product, 'units' => $units, 'currency' => $currency, 'vat_rate'=> $vat_rate, 'categories' => $categories
         ]);
     }
 

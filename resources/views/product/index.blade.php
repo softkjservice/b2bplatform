@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
+        <div class="row ">
             <div class="col-md-8">
-                <h3>  <p>Produkty</p></h3>
+                 <h3>  Produkty</h3> <h5> {{$currentCategory}}</h5>
             </div>
         </div>
 
@@ -12,9 +12,9 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">{{ __('text.category.name') }}</th>
-                    <th scope="col">{{ __('text.category.index') }}</th>
-                    <th scope="col">{{ __('text.category.description') }}</th>
+                    <th scope="col">{{ __('text.product.name') }}</th>
+                    <th scope="col">{{ __('text.product.index') }}</th>
+                    <th scope="col">{{ __('text.product.description') }}</th>
 
                 </thead>
                 <tbody>

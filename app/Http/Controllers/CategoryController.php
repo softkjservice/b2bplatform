@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classis\Utilities;
+use App\Enums\LayotCategoryType;
 use App\Http\Requests\UpsertCategoryRequest;
 use App\Http\Requests\UpsertPictureRequest;
 use App\Models\Category;
@@ -45,7 +46,9 @@ class CategoryController extends Controller
      */
     public function create() :View
     {
-        return view('category.create');
+        $layotCategortType = LayotCategoryType::TYPES;
+        //dd($layotCategortType);
+        return view('category.create',['layotCategoryType'=>$layotCategortType]);
     }
 
     /**
@@ -92,9 +95,10 @@ class CategoryController extends Controller
     public function edit($id) :View
     {
         //dd('edit'.$id);
+        $layotCategortType = LayotCategoryType::TYPES;
         $category=Category::findOrFail($id);
         return view("category.edit", [
-            'category' => $category
+            'category' => $category, 'layotCategoryType'=>$layotCategortType
         ]);
     }
 

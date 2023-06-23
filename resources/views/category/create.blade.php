@@ -34,10 +34,22 @@
                 @error('parentCategory')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <div class="form-group ">
+<!--                <div class="form-group ">
                     <label for="title">{{ __('text.category.layotType') }}</label>
                     <input type="number" min="0" max="10" step="1" class="form-control" id="layotType" placeholder="layotType" name="layotType" value="1">
+                </div>-->
+
+                <div class="form-group">
+                    <label for="title">{{ __('text.product.unit') }} </label><br>
+                    <!--                            <input type="text" class="form-control" id="unit" placeholder="Unit" name="unit" >-->
+
+                    <select id="layotType" name="layotType" >
+                        @foreach($layotCategoryType as $layotType)
+                            <option value="{{$layotType}}" >{{$layotType}}</option>
+                        @endforeach
+                    </select>
                 </div>
+
                 @error('layotType')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

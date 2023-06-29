@@ -2,6 +2,11 @@
 
 @section('content')
     <h4><p style="padding: 0px 0px 0px 40px ">Plotery tnące i tnąco bigujące </p></h4>
+    <p>
+    @if(count($categories)==0)
+        <p p style="padding: 0px 0px 0px 40px ">Brak zdefiniowanych kategorii</p>
+        @endisset
+    </p>
     <div class="row">
       @foreach($categories as $category)
             <div class="col-md-4" style="padding: 10px 40px 10px 40px">

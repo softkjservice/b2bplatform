@@ -5,7 +5,9 @@
         <div class="row ">
             <div class="col-md-8">
                  <h3>  Produkty</h3> <h5> {{$currentCategory}}</h5>
-            </div>
+                @if(count($products)==0)
+                    <p>Brak produktów w tej kategorii</p>
+                @endisset
         </div>
 
         <div class="row">

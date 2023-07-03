@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    /*'default' => env('DB_CONNECTION', 'mysql'),*/
+    'default' => env('DB_CONNECTION', 'db'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,9 +34,45 @@ return [
     |
     */
 
-    'connections' => [
+    'connections' =>
+     [
+         'testing' => [
+             'driver' => env('DB_TEST_DRIVER'),
+             // more details on your testing database
+         ],
 
-        'sqlite' => [
+         'testing_db' => [
+             'driver' => 'mysql',
+             'host' => env('TEST_DB_HOST', 'localhost'),
+             'database' => env('TEST_DB_DATABASE', 'forge'),
+             'username' => env('TEST_DB_USERNAME', 'forge'),
+             'password' => env('TEST_DB_PASSWORD', ''),
+             'charset' => 'utf8',
+             'collation' => 'utf8_unicode_ci',
+             'prefix' => '',
+             'strict' => false,
+         ],
+
+         /** Production or database DB **/
+         'db' => [
+             'driver' => 'mysql',
+             'host' => env('TEST_DB_HOST', 'localhost'),
+             'database' => env('TEST_DB_DATABASE', 'forge'),
+             'username' => env('TEST_DB_USERNAME', 'forge'),
+             'password' => env('TEST_DB_PASSWORD', ''),
+             'charset' => 'utf8',
+             'collation' => 'utf8_unicode_ci',
+             'prefix' => '',
+             'strict' => false,
+         ],
+
+         'sqlite_testing_db' => [
+             'driver' => 'sqlite',
+             'database' => storage_path().'/testing_database.sqlite',
+             'prefix' => '',
+         ],
+
+         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),

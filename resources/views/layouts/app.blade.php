@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/b2b.css') }}" rel="stylesheet">
 <!--    <link href="{{ asset('css/invoice.css') }}" rel="stylesheet">-->
 </head>
 <body>

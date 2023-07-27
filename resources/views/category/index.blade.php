@@ -13,6 +13,7 @@
                 <thead>
                 <tr>
                     <th scope="col">{{ __('text.category.name') }}</th>
+                    <th scope="col">{{ __('text.category.image') }}</th>
                     <th scope="col">{{ __('text.category.index') }}</th>
                     <th scope="col">{{ __('text.category.description') }}</th>
 
@@ -20,6 +21,7 @@
                 <tbody>
                 @foreach($categories as $category)
                     <tr>
+                        <td><img src="{{ asset('storage/'.$category->image_path) }}"   class="thumbnail-pictures" ></td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->index }}</td>
                         <td>{{ $category->categoryDescription }}</td>

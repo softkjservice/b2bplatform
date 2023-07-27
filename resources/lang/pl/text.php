@@ -52,10 +52,10 @@ return [
             'index' => 'Kolejność',
         ],
         'name' => 'Nazwa produktu',
-        'index' => 'Index',
+        'index' => 'Index produktu',
         'barcode' => 'Kod kreskowy',
         'unit' => 'Jednostka',
-        'price' => 'Cena netto',
+        'price' => 'Cena netto PLN',
         'currency' => 'Waluta',
         'vatrate' => 'Stawka VAT',
         'description' => 'Opis produktu',
@@ -66,9 +66,7 @@ return [
         'homePageActive' => 'Aktywny na stronie startowej'
     ],
     'category' => [
-     'name' => 'Nazwa',
-     'index' => 'Index',
-     'description'  => 'Opis',
+
     'add_title' => 'Dodawanie kategorii produktów',
     'edit_title' => 'Edycja kategorii produktów: :name',
     'show_title' => 'Podgląd kategorii produktów',

@@ -14,17 +14,19 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th scope="col">{{ __('text.product.image') }}</th>
                     <th scope="col">{{ __('text.product.name') }}</th>
                     <th scope="col">{{ __('text.product.index') }}</th>
-                    <th scope="col">{{ __('text.product.description') }}</th>
+                    <th scope="col">{{ __('text.product.price') }}</th>
 
                 </thead>
                 <tbody>
                 @foreach($products as $product)
                     <tr>
+                        <td><img src="{{ asset('storage/'.$product->image_path) }}"   class="thumbnail-pictures" ></td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->index }}</td>
-                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->price }}</td>
 
                         <td>
                             <form method="POST"

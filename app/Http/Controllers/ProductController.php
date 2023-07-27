@@ -46,7 +46,8 @@ class ProductController extends Controller
             return view('product.index',['products' => Product::paginate(10),'currentCategory'=>'Wszystkie kategorie']);
        }else{
             $currentCategoryName='Wybrano kategorię: '.Category::findOrFail($currentCategoryId)->name;
-            return view('product.index',['products' => Product::where('category_id' , $currentCategoryId)->paginate(10),'currentCategory'=>$currentCategoryName]);
+            /*return view('product.index',['products' => Product::where('category_id' , $currentCategoryId)->paginate(10),'currentCategory'=>$currentCategoryName]);*/
+            return view('product.indexImage',['products' => Product::where('category_id' , $currentCategoryId)->paginate(10),'currentCategory'=>$currentCategoryName]);
         }
     }
 

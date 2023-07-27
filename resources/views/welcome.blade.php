@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 
 @section('content')
     <h4><p style="padding: 0px 0px 0px 40px ">Plotery tnące i tnąco bigujące </p></h4>

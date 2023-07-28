@@ -59,6 +59,7 @@ return [
         'currency' => 'Waluta',
         'vatrate' => 'Stawka VAT',
         'description' => 'Opis produktu',
+        'descriptionBis' => 'Opis produktu - uzupełnienie',
         'category' => 'Kategoria',
         'image' => 'Zdjęcie',
         'active' => 'Aktywny',

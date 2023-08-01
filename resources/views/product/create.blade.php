@@ -44,6 +44,13 @@
                         @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <div class="form-group">
+                            <label for="title">{{ __('text.product.descriptionBis') }}</label>
+                            <input type="text" class="form-control" id="descriptionBis" placeholder="DescriptionBis" name="descriptionBis" >
+                        </div>
+                        @error('description')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                        {{-- <div class="form-group">
                             <label for="title">{{ __('text.product.priority') }}</label>
                             <input type="text" class="form-control" id="priority" placeholder="Priority" name="priority" >

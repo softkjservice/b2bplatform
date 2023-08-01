@@ -55,7 +55,7 @@ return [
         'index' => 'Index produktu',
         'barcode' => 'Kod kreskowy',
         'unit' => 'Jednostka',
-        'price' => 'Cena netto PLN',
+        'price' => 'Cena netto',
         'currency' => 'Waluta',
         'vatrate' => 'Stawka VAT',
         'description' => 'Opis produktu',

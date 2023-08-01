@@ -36,6 +36,13 @@
         @error('description')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+        <div class="form-group">
+            <label for="title">{{ __('text.product.descriptionBis') }}</label>
+            <input type="text" class="form-control" id="descriptionBis" placeholder="DescriptionBis" name="descriptionBis" value="{{$product->descriptionBis}}">
+        </div>
+        @error('descriptionBis')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
     </div>
     <div class="col-md-4">

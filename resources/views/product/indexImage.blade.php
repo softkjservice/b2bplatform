@@ -25,7 +25,7 @@
                     <div class="col-md-4 " >
                         <div class="card mb-4 border-none pudding-20px">
                             <div align="left"  class="embed-responsive embed-responsive-16by9">
-                                <h4>{!! $product->description !!}}</h4>
+                                <h4>{!! $product->description !!}
 
                             </div>
                         </div>
@@ -33,7 +33,11 @@
                     <div class="col-md-4" >
                         <div class="pudding-20px">
                             <div align="center"  class="embed-responsive embed-responsive-16by9">
-                                <h2>{{$product->name}}</h2>
+                                {{ __('text.product.price') }}
+                                <h4>
+                                    <p>{{$product->price." ".$product->currency}}</p>
+                                    <p>{{$product->descriptionBis}}</p>
+                                </h4>
 
                             </div>
                         </div>

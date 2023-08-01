@@ -6,6 +6,7 @@ use App\Classis\Utilities;
 use App\Http\Requests\UpsertProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDescription;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -82,6 +83,8 @@ class ProductController extends Controller
         $product->active=Utilities::checboxTrue($request, 'active');
         $product->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
         $product->save();
+        $this->productDescriptionSave($request,$product);
+        //dd($product->descriptions()->where('name', 'shortDescriptionA')->first()->attributesToArray()['htmlText']);
         return redirect(route('product.index'));
     }
 
@@ -168,6 +171,15 @@ class ProductController extends Controller
             Storage::delete($product->image_path);
         }
         $product->delete();
-        return redirect(route('product.index'));
+        //return redirect(route('product.index'));
+        return back()->withInput();
+    }
+    private function productDescriptionSave(UpsertProductRequest $request, Product $product){
+        $shortDescriptionA=$request->input('description');
+        $shortDescriptionB=$request->input('descriptionBis');
+        $product->descriptions()->saveMany([
+            new ProductDescription(['name' => 'shortDescriptionA','htmlText'=>$shortDescriptionA]),
+            new ProductDescription(['name' => 'shortDescriptionB','htmlText'=>$shortDescriptionB]),
+        ]);
     }
 }

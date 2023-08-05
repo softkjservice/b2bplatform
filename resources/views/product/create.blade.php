@@ -37,7 +37,7 @@
                         @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label for="title">{{ __('text.product.description') }}</label>
                             <input type="text" class="form-control" id="description" placeholder="Description" name="description" >
                         </div>
@@ -50,7 +50,9 @@
                         </div>
                         @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @enderror-->
+
+
                        {{-- <div class="form-group">
                             <label for="title">{{ __('text.product.priority') }}</label>
                             <input type="text" class="form-control" id="priority" placeholder="Priority" name="priority" >
@@ -136,7 +138,30 @@
                 @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+               {{-- <div class="form-group">
+                    <label for="title">{{ __('text.product.description') }}</label>
+                    <input type="text" class="form-control textbox" id="description" placeholder="Description" name="description" >
+                </div>
+                @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror--}}
+                <div class="form-group">
+                    Krótki opis A<br>
+                    <textarea rows = "5" cols="100%" name = "descriptionA">{{ __('text.product.description') }}
+                    </textarea>
+                </div>
+                @error('descriptionA')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
+                <div class="form-group">
+                    Krótki opis B<br>
+                    <textarea rows = "5" cols="100%" name = "descriptionB">{{ __('text.product.descriptionBis') }}
+                    </textarea>
+                </div>
+                @error('descriptionB')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                <br>
                 <button type="submit" class="btn btn-primary" name="dodaj*">Enter</button>&nbsp;&nbsp;

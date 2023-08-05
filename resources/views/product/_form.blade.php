@@ -29,20 +29,7 @@
         @error('price')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <div class="form-group">
-            <label for="title">{{ __('text.product.description') }}</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" name="description" value="{{$product->description}}">
-        </div>
-        @error('description')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        <div class="form-group">
-            <label for="title">{{ __('text.product.descriptionBis') }}</label>
-            <input type="text" class="form-control" id="descriptionBis" placeholder="DescriptionBis" name="descriptionBis" value="{{$product->descriptionBis}}">
-        </div>
-        @error('descriptionBis')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+
 
     </div>
     <div class="col-md-4">
@@ -143,6 +130,23 @@
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
+<div class="form-group">
+    Krótki opis A<br>
+    <textarea rows = "5" cols="100%" name = "descriptionA">{{ __('text.product.description') }}
+                    </textarea>
+</div>
+@error('descriptionA')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+<div class="form-group">
+    Krótki opis B<br>
+    <textarea rows = "5" cols="100%" name = "descriptionB">{{ __('text.product.descriptionBis') }}
+                    </textarea>
+</div>
+@error('descriptionB')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
 
 <br>
 <button type="submit" class="btn btn-primary" name="dodaj*">Enter</button> &nbsp;&nbsp;

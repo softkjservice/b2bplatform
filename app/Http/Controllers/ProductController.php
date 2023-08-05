@@ -76,6 +76,7 @@ class ProductController extends Controller
      */
     public function store(UpsertProductRequest $request): RedirectResponse
     {
+        //dd($request->input('descriptionB'));
         $product=new Product($request->validated());
         if ($request->hasFile('image')) {
             $product->image_path = $request->file('image')->store('product');
@@ -83,8 +84,9 @@ class ProductController extends Controller
         $product->active=Utilities::checboxTrue($request, 'active');
         $product->homePageActive=Utilities::checboxTrue($request, 'homePageActive');
         $product->save();
-        $this->productDescriptionSave($request,$product);
+        $this->productDescriptionSave($request,$product,false);
         //dd($product->descriptions()->where('name', 'shortDescriptionA')->first()->attributesToArray()['htmlText']);
+
         return redirect(route('product.index'));
     }
 
@@ -155,6 +157,7 @@ class ProductController extends Controller
             $product->image_path=$imagePathOld;
         }
         $product->save();
+        $this->productDescriptionSave($request,$product, true);
         return redirect(route('product.index'));
     }
 
@@ -174,12 +177,35 @@ class ProductController extends Controller
         //return redirect(route('product.index'));
         return back()->withInput();
     }
-    private function productDescriptionSave(UpsertProductRequest $request, Product $product){
-        $shortDescriptionA=$request->input('description');
-        $shortDescriptionB=$request->input('descriptionBis');
-        $product->descriptions()->saveMany([
-            new ProductDescription(['name' => 'shortDescriptionA','htmlText'=>$shortDescriptionA]),
-            new ProductDescription(['name' => 'shortDescriptionB','htmlText'=>$shortDescriptionB]),
-        ]);
+    private function productDescriptionSave(UpsertProductRequest $request, Product $product, bool $update){
+        //dd($request->input('descriptionA'));
+//dd($product);
+        $shortDescriptionA=$request->input('descriptionA');
+        $shortDescriptionB=$request->input('descriptionB');
+        //dd($shortDescriptionA." ".$shortDescriptionB);
+        if ($update){
+            $descriptions=$product->descriptions;
+            //dd($descriptions->toArray());
+            //dd($descriptions);
+            foreach ($descriptions as $description) {
+              $productDescription=ProductDescription::findOrFail($description->id);
+//dd($productDescription);
+               if ($productDescription->name=='shortDescriptionA'){
+                   $productDescription->htmlText=$shortDescriptionA;
+                   $productDescription->save();
+               }
+                if ($productDescription->name=='shortDescriptionB'){
+                    $productDescription->htmlText=$shortDescriptionB;
+                    $productDescription->save();
+                }
+            }
+
+        }else{
+            $product->descriptions()->saveMany([
+                new ProductDescription(['name' => 'shortDescriptionA','htmlText'=>$shortDescriptionA]),
+                new ProductDescription(['name' => 'shortDescriptionB','htmlText'=>$shortDescriptionB]),
+            ]);
+        }
+
     }
 }

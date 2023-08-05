@@ -35,6 +35,8 @@ class UpsertProductRequest extends FormRequest
             'descriptionBis' => 'max:1000',
             'priority' => 'max:10',
             'category_id' => 'numeric|',
+            'descriptionA' => 'max:1000',
+            'descriptionB' => 'max:1000',
         ];
     }
 }
